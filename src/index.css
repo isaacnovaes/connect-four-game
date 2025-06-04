@@ -1,5 +1,51 @@
 @import 'tailwindcss';
 
+@font-face {
+    font-family: 'SpaceGrotesk';
+    src: url('./assets//fonts/SpaceGrotesk-VariableFont_wght.ttf');
+    font-weight: 100 1000;
+}
+
+@theme {
+    --color-*: initial;
+    --color-white: #fff;
+    --color-black: #000;
+    --color-pink: #fd6687;
+    --color-yellow: #ffce67;
+    --color-purple-dark: #5c2dd5;
+    --color-purple-light: #7945ff;
+
+    --font-*: initial;
+    --font-space-grotesk: 'SpaceGrotesk', ui-sans-serif, system-ui, sans-serif;
+
+    --text-*: initial;
+    --text-xs: 16px;
+    --text-xs--line-height: 21px;
+    --text-s: 20px;
+    --text-s--line-height: 26px;
+    --text-m: 24px;
+    --text-m--line-height: 31px;
+    --text-l: 56px;
+    --text-l--line-height: 71px;
+
+    --font-weight-*: initial;
+    --font-weight-bold: 700;
+
+    --breakpoint-*: initial;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1440px;
+
+    --shadow-box: 0px 5px 0px #000;
+}
+
+:root {
+    font-family: var(--font-space-grotesk);
+    font-size: var(--text-m);
+    line-height: var(--text-m--line-height);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-black);
+}
+
 [popover]:popover-open {
     opacity: 1;
     transform: scale(1);
