@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import Button from '../../components/Button';
-import IconCheck from '../../components/IconCheck';
+import CheckIcon from '../../components/CheckIcon';
 import PlayerVsCpuIcon from '../../components/PlayerVsCpuIcon';
 import PlayerVsPlayerIcon from '../../components/PlayerVsPlayerIcon';
 import GameModes from './GameModes';
@@ -34,7 +34,7 @@ const MainMenu = () => {
                                     toggleShowGameRules();
                                 }}
                             >
-                                <IconCheck />
+                                <CheckIcon />
                             </Button>
                         </GameRules>
                     </motion.div>
