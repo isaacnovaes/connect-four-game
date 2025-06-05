@@ -36,6 +36,8 @@
     --breakpoint-desktop: 1440px;
 
     --shadow-box: 0px 5px 0px #000;
+
+    --spacing: 4px;
 }
 
 :root {
@@ -62,7 +64,6 @@
     font-size: 1.2rem;
     padding: 10px;
 
-    /* Final state of the exit animation */
     opacity: 0;
     transform: scaleX(0);
 
@@ -73,16 +74,12 @@
         display 0.7s allow-discrete;
 }
 
-/* Transition for the popover's backdrop */
-
 [popover]::backdrop {
     background-color: rgb(0 0 0 / 0%);
     transition:
         display 0.7s allow-discrete,
         overlay 0.7s allow-discrete,
         background-color 0.7s;
-    /* Equivalent to
-    transition: all 0.7s allow-discrete; */
 }
 
 [popover]:popover-open::backdrop {
