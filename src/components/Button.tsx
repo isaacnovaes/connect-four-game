@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 type Color = 'white' | 'pink' | 'yellow';
@@ -27,38 +28,38 @@ const colors: Record<Color, string> = {
 };
 
 const Button = (props: SmallButtonProps | ButtonIconProps | ButtonProps) => {
-    const { children, type, ...rest1 } = props;
-
     if (props.buttonMode === 'small') {
+        const { buttonMode: modeSmall, ...restSmall } = props;
         return (
             <button
-                {...rest1}
+                {...restSmall}
                 className='bg-purple-dark hover:bg-pink h-[39px] w-[108px] rounded-[20px] text-xs text-white uppercase transition-all duration-300 hover:scale-105 hover:cursor-pointer'
-                type={type}
+                type={props.type}
             >
-                {children}
+                {props.children}
             </button>
         );
     }
 
     if (props.buttonMode === 'icon') {
+        const { buttonMode: modeIcon, className: smallClassName, ...restIcon } = props;
         return (
             <button
-                {...props}
-                className={`${props.className ?? ''} w-full hover:cursor-pointer`}
-                type={type}
+                {...restIcon}
+                className={`${smallClassName ?? ''} w-full hover:cursor-pointer`}
+                type={props.type}
             >
-                {children}
+                {props.children}
             </button>
         );
     }
-    const { className, ...rest } = props;
+    const { className: normalClassName, buttonMode: modeNormal, color, ...rest } = props;
 
-    const classes = `${colors[props.color]} w-full hover:scale-105 shadow-box hover:shadow-purple-dark hover:border-purple-dark flex cursor-pointer items-center justify-between gap-x-3 rounded-[20px] border-2 border-black p-2 leading-11 motion-safe:transition-all motion-safe:duration-300 ${className ?? ''}`;
+    const classes = `${colors[color]} w-full hover:scale-105 shadow-box hover:shadow-purple-dark hover:border-purple-dark flex cursor-pointer items-center justify-between gap-x-3 rounded-[20px] border-2 border-black p-2 leading-11 motion-safe:transition-all motion-safe:duration-300 ${normalClassName ?? ''}`;
 
     return (
-        <button {...rest} className={classes} type={type}>
-            {children}
+        <button {...rest} className={classes} type={props.type}>
+            {props.children}
         </button>
     );
 };
