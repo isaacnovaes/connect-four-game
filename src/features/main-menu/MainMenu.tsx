@@ -1,14 +1,17 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import Button from '../../components/Button';
-import CheckIcon from '../../components/CheckIcon';
-import PlayerVsCpuIcon from '../../components/PlayerVsCpuIcon';
-import PlayerVsPlayerIcon from '../../components/PlayerVsPlayerIcon';
+import CheckIcon from '../../components/icons/CheckIcon';
+import PlayerVsCpuIcon from '../../components/icons/PlayerVsCpuIcon';
+import PlayerVsPlayerIcon from '../../components/icons/PlayerVsPlayerIcon';
+import { useAppDispatch } from '../../store/hooks';
+import { setRouter } from '../../store/routeSlice';
 import GameModes from './GameModes';
 import GameRules from './GameRules';
 
 const MainMenu = () => {
     const [showGameRules, setShowGameRules] = useState(false);
+    const dispatch = useAppDispatch();
 
     const toggleShowGameRules = () => {
         setShowGameRules((sgr) => !sgr);
@@ -18,36 +21,44 @@ const MainMenu = () => {
         <>
             <AnimatePresence>
                 {showGameRules ? (
-                    <motion.div
-                        animate={{ opacity: 1, scale: 1 }}
-                        className='absolute top-[50%] left-[50%] z-20 h-120 w-[537px] -translate-x-[50%] -translate-y-[50%]'
-                        exit={{ opacity: 0, scale: 0 }}
-                        initial={{ opacity: 0, scale: 0 }}
-                    >
-                        <GameRules id='game-rules'>
-                            <Button
-                                className='target'
-                                color='pink'
-                                isIcon
-                                type='button'
-                                onClick={() => {
-                                    toggleShowGameRules();
-                                }}
-                            >
-                                <CheckIcon />
-                            </Button>
-                        </GameRules>
-                    </motion.div>
+                    <GameRules id='game-rules'>
+                        <Button
+                            buttonMode='icon'
+                            className='target'
+                            color='pink'
+                            type='button'
+                            onClick={() => {
+                                toggleShowGameRules();
+                            }}
+                        >
+                            <CheckIcon />
+                        </Button>
+                    </GameRules>
                 ) : null}
             </AnimatePresence>
             <GameModes>
-                <Button color='pink' type='button'>
+                <Button
+                    buttonMode='normal'
+                    color='pink'
+                    type='button'
+                    onClick={() => {
+                        dispatch(setRouter('game'));
+                    }}
+                >
                     <span>PLAY VS CPU </span> <PlayerVsCpuIcon />
                 </Button>
-                <Button color='yellow' type='button'>
+                <Button
+                    buttonMode='normal'
+                    color='yellow'
+                    type='button'
+                    onClick={() => {
+                        dispatch(setRouter('game'));
+                    }}
+                >
                     <span>PLAY VS PLAYER </span> <PlayerVsPlayerIcon />
                 </Button>
                 <Button
+                    buttonMode='normal'
                     color='white'
                     type='button'
                     onClick={() => {
