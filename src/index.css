@@ -27,9 +27,12 @@
     --text-m--line-height: 31px;
     --text-l: 56px;
     --text-l--line-height: 71px;
+    --text-body: 16px;
+    --text-body--line-height: 21px;
 
     --font-weight-*: initial;
     --font-weight-bold: 700;
+    --font-weight-medium: 500;
 
     --breakpoint-*: initial;
     --breakpoint-tablet: 768px;
