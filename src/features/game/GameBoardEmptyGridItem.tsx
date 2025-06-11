@@ -11,7 +11,7 @@ const GameBoardEmptyGridItem = (props: {
     const dispatch = useAppDispatch();
     const x = 7 * (props.spot * 6.7 + 1);
     const y = 8 * (props.gridRow * 5.8 + 1);
-    console.count(`render item ${props.spot.toString()}-${props.gridRow.toString()}`);
+
     return (
         <motion.button
             animate={{
