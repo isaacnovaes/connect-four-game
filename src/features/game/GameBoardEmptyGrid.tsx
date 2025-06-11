@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import MarkerRedIcon from '../../components/icons/MarkerRedIcon';
 import MarkerYellowIcon from '../../components/icons/MarkerYellowIcon';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { play, type BoardState, type Row } from './boardSlice';
+import { useAppSelector } from '../../store/hooks';
+import type { BoardState, Row } from './boardSlice';
+import GameBoardEmptyGridItem from './GameBoardEmptyGridItem';
 
 const emptyGrid: BoardState['grid'] = [
     [0, 1, 2, 3, 4, 5, 6],
@@ -19,7 +20,11 @@ const GameBoardEmptyGrid = () => {
     const runs = useAppSelector((state) => state.board.runs);
     const playerTurn = useAppSelector((state) => state.board.playerTurn);
     const winnerPlayer = useAppSelector((state) => state.board.winnerPlayer);
-    const dispatch = useAppDispatch();
+
+    const onEmptyGridItemHover = useCallback((spot: number) => {
+        setHoveredColumn(spot);
+    }, []);
+
     return (
         <>
             {winnerPlayer === null && (
@@ -39,9 +44,6 @@ const GameBoardEmptyGrid = () => {
                       const gridRow = index as Row;
 
                       return row.map((spot) => {
-                          const x = 7 * (spot * 6.7 + 1);
-                          const y = 8 * (gridRow * 5.8 + 1);
-
                           const isGridItemChosen = runs.find(
                               (run) => run.column === spot && run.row === gridRow
                           );
@@ -51,20 +53,11 @@ const GameBoardEmptyGrid = () => {
                           }
 
                           return (
-                              <motion.button
+                              <GameBoardEmptyGridItem
                                   key={`${spot.toString()}-${gridRow.toString()}`}
-                                  animate={{
-                                      x,
-                                      y,
-                                  }}
-                                  className={`absolute z-40 aspect-square w-10 rounded-full bg-transparent text-transparent hover:cursor-pointer`}
-                                  type='button'
-                                  onClick={() => {
-                                      dispatch(play({ column: spot, row: gridRow }));
-                                  }}
-                                  onMouseOver={() => {
-                                      setHoveredColumn(spot);
-                                  }}
+                                  gridRow={gridRow}
+                                  spot={spot}
+                                  onHover={onEmptyGridItemHover}
                               />
                           );
                       });
