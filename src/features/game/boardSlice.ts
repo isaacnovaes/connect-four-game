@@ -69,6 +69,7 @@ export const counterSlice = createSlice({
                             }
                             return run;
                         });
+
                         state.state = 'done';
                         break;
                     }

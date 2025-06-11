@@ -9,13 +9,13 @@ const GameResult = () => {
     const playerTwoPoints = runs.filter((r) => r.player === 2).length * 4;
 
     return (
-        <div className='mb-[50px] flex h-[81px] items-center justify-between px-9'>
-            <div className='shadow-box relative flex h-[81px] basis-[142px] flex-col items-center justify-between rounded-[20px] border-2 border-black bg-white py-[10px]'>
+        <div className='tablet:max-w-[745px] mx-auto mb-[50px] flex h-[81px] items-center justify-between px-9'>
+            <div className='shadow-box tablet:flex-row tablet:p-10 tablet:basis-[272px] relative flex h-[81px] basis-[142px] flex-col items-center justify-between rounded-[20px] border-2 border-black bg-white py-[10px]'>
                 <span className='text-xs uppercase'>Player 1</span>
                 <span className='text-[32px]'>{playerOnePoints}</span>
                 <PlayerOneIcon className='absolute top-[10px] -left-[30px]' />
             </div>
-            <div className='shadow-box relative flex h-[81px] basis-[142px] flex-col items-center justify-between rounded-[20px] border-2 border-black bg-white py-[10px]'>
+            <div className='shadow-box tablet:flex-row tablet:p-10 tablet:basis-[272px] relative flex h-[81px] basis-[142px] flex-col items-center justify-between rounded-[20px] border-2 border-black bg-white py-[10px]'>
                 <span className='text-xs uppercase'>Player 2</span>
                 <span className='text-[32px]'>{playerTwoPoints}</span>
                 <PlayerTwoIcon className='absolute top-[10px] -right-[30px]' />

@@ -10,7 +10,7 @@ const GameMenu = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <div className='flex h-[140px] items-center justify-between px-5 py-[50px]'>
+        <div className='tablet:max-w-[768px] mx-auto flex h-[140px] items-center justify-between px-5 py-[50px]'>
             <Button
                 buttonMode='small'
                 type='button'

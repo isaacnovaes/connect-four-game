@@ -13,7 +13,7 @@ const GameMenuDialog = (props: {
             ref={props.dialogRef}
             className='mx-auto mt-10 h-screen max-h-none max-w-none place-items-center bg-transparent backdrop:bg-black/40 backdrop:backdrop-blur-xs backdrop:transition-all backdrop:transition-discrete backdrop:duration-300 open:grid starting:backdrop:bg-black/0'
         >
-            <div className='bg-purple-light flex w-[93dvw] flex-col gap-y-12 rounded-[40px] p-5 pb-7 duration-700 starting:translate-y-3'>
+            <div className='bg-purple-light flex w-[93dvw] max-w-[480px] flex-col gap-y-12 rounded-[40px] p-5 pb-7 duration-700 starting:translate-y-3'>
                 <h1 className='text-l mt-2.5 text-center text-white uppercase'>pause</h1>
                 <div className='flex flex-col justify-between gap-y-6'>
                     <Button
