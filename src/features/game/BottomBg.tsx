@@ -5,6 +5,10 @@ const BottomBg = () => {
 
     const bg = winnerPlayer ? (winnerPlayer === 1 ? 'bg-pink' : 'bg-yellow') : 'bg-purple-dark';
 
-    return <div className={`${bg} absolute bottom-0 h-[236px] w-full rounded-t-[60px]`} />;
+    return (
+        <div
+            className={`${bg} absolute bottom-0 h-[236px] w-full rounded-t-[60px] transition-colors`}
+        />
+    );
 };
 export default BottomBg;
