@@ -81,9 +81,12 @@ const GameTimer = () => {
                             {playerTurnIndicator}
                         </tspan>
                     </text>
-                    <text fontSize='56' transform='translate(50 41)'>
-                        <tspan className='text-l' x='.872' y='77'>
-                            {timeLeft.toString()}s
+                    <text fontSize='56' transform='translate(45 41)'>
+                        <tspan className='text-l tabular-nums' x='.872' y='77'>
+                            {new Intl.NumberFormat('en-us', {
+                                minimumIntegerDigits: 2,
+                            }).format(timeLeft)}
+                            s
                         </tspan>
                     </text>
                 </g>
