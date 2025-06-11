@@ -73,6 +73,7 @@ export const counterSlice = createSlice({
                         break;
                     }
 
+                    state.timeLeft = initialState.timeLeft;
                     state.playerTurn = state.playerTurn === 1 ? 2 : 1;
                     break;
                 }
