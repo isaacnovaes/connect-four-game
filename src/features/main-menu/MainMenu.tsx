@@ -1,7 +1,6 @@
 import { AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import Button from '../../components/Button';
-import CheckIcon from '../../components/icons/CheckIcon';
 import PlayerVsCpuIcon from '../../components/icons/PlayerVsCpuIcon';
 import PlayerVsPlayerIcon from '../../components/icons/PlayerVsPlayerIcon';
 import { useAppDispatch } from '../../store/hooks';
@@ -21,19 +20,12 @@ const MainMenu = () => {
         <>
             <AnimatePresence>
                 {showGameRules ? (
-                    <GameRules id='game-rules'>
-                        <Button
-                            buttonMode='icon'
-                            className='target'
-                            color='pink'
-                            type='button'
-                            onClick={() => {
-                                toggleShowGameRules();
-                            }}
-                        >
-                            <CheckIcon />
-                        </Button>
-                    </GameRules>
+                    <GameRules
+                        id='game-rules'
+                        onCloseButtonClick={() => {
+                            toggleShowGameRules();
+                        }}
+                    />
                 ) : null}
             </AnimatePresence>
             <GameModes>
