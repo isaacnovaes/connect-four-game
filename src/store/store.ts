@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import boardReducer from '../features/game/boardSlice';
-import routerSlice from './routeSlice';
 
 export const store = configureStore({
-    reducer: { board: boardReducer, router: routerSlice },
+    reducer: { board: boardReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

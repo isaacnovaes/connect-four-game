@@ -16,6 +16,8 @@
     "dependencies": {
         "@reduxjs/toolkit": "^2.8.2",
         "@tailwindcss/vite": "^4.1.8",
+        "@tanstack/react-router": "^1.121.16",
+        "@tanstack/react-router-devtools": "^1.121.16",
         "motion": "^12.16.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
@@ -24,6 +26,8 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.25.0",
+        "@tanstack/eslint-plugin-router": "^1.120.17",
+        "@tanstack/router-plugin": "^1.121.16",
         "@types/react": "^19.1.2",
         "@types/react-dom": "^19.1.2",
         "@vitejs/plugin-react": "^4.4.1",

@@ -1,3 +1,4 @@
+import { useLocation } from '@tanstack/react-router';
 import { motion } from 'motion/react';
 import { memo } from 'react';
 import { useAppDispatch } from '../../store/hooks';
@@ -8,6 +9,7 @@ const GameBoardEmptyGridItem = (props: {
     readonly spot: Column;
     readonly gridRow: Row;
 }) => {
+    const isCpuMode = useLocation().pathname.includes('cpu');
     const dispatch = useAppDispatch();
     const x = 7 * (props.spot * 6.7 + 1);
     const y = 8 * (props.gridRow * 5.8 + 1);
@@ -21,7 +23,7 @@ const GameBoardEmptyGridItem = (props: {
             className={`absolute z-40 aspect-square w-10 rounded-full bg-transparent text-transparent hover:cursor-pointer`}
             type='button'
             onClick={() => {
-                dispatch(play({ column: props.spot, row: props.gridRow }));
+                dispatch(play({ column: props.spot, row: props.gridRow, isCpuMode }));
             }}
             onMouseOver={() => {
                 props.onHover(props.spot);

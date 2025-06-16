@@ -1,12 +1,13 @@
+import { useNavigate } from '@tanstack/react-router';
 import Button from '../../components/Button';
 import { useAppDispatch } from '../../store/hooks';
-import { setRouter } from '../../store/routeSlice';
 import { restart, setGameStatus } from './boardSlice';
 
 const GameMenuDialog = (props: {
     readonly dialogRef: React.RefObject<HTMLDialogElement | null>;
 }) => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     return (
         <dialog
@@ -50,7 +51,7 @@ const GameMenuDialog = (props: {
                         onClick={() => {
                             props.dialogRef.current?.close();
                             dispatch(restart());
-                            dispatch(setRouter('menu'));
+                            void navigate({ to: '/' });
                         }}
                     >
                         quit game

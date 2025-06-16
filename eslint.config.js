@@ -1,4 +1,5 @@
 import eslintPlugin from '@eslint/js';
+import pluginRouter from '@tanstack/eslint-plugin-router';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactPlugin from 'eslint-plugin-react';
@@ -10,6 +11,7 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
     { ignores: ['dist'] },
     eslintPluginPrettierRecommended,
+    ...pluginRouter.configs['flat/recommended'],
     {
         languageOptions: { globals: globals.browser },
         rules: {
@@ -159,5 +161,6 @@ export default tseslint.config(
                 },
             ], // avoid react component naming warning
         },
-    }
+    },
+    { ignores: ['src/routeTree.gen.ts'] }
 );
