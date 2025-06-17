@@ -5,10 +5,17 @@ import { decreaseTimer, setPlayerTurn } from './boardSlice';
 const GameTimer = () => {
     const timeLeft = useAppSelector((s) => s.board.timeLeft);
     const gameState = useAppSelector((s) => s.board.state);
+    const isCpuMode = useAppSelector((s) => s.board.isCpuMode);
     const playerTurn = useAppSelector((state) => state.board.playerTurn);
     const dispatch = useAppDispatch();
 
-    const playerTurnIndicator = playerTurn === 1 ? "Player 1's turn" : "Player 2's turn";
+    const playerTurnIndicator = isCpuMode
+        ? playerTurn === 1
+            ? 'your turn'
+            : "cpu's turn"
+        : playerTurn === 1
+          ? "Player 1's turn"
+          : "Player 2's turn";
 
     useEffect(() => {
         const timeoutId = setInterval(() => {
@@ -75,8 +82,11 @@ const GameTimer = () => {
                     stroke='#000'
                     strokeWidth='3'
                 />
-                <g fill='#FFF'>
-                    <text fontSize='16' transform='translate(30 41)'>
+                <g fill={isCpuMode && playerTurn === 2 ? '#000' : '#FFF'}>
+                    <text
+                        fontSize='16'
+                        transform={isCpuMode ? 'translate(50 41)' : 'translate(30 41)'}
+                    >
                         <tspan className='text-xs uppercase' x='1.64' y='16'>
                             {playerTurnIndicator}
                         </tspan>

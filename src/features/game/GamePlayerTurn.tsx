@@ -5,6 +5,7 @@ import GameTimer from './GameTimer';
 
 const GamePlayerTurn = () => {
     const winnerPlayer = useAppSelector((state) => state.board.winnerPlayer);
+    const isCpuMode = useAppSelector((state) => state.board.isCpuMode);
     const dispatch = useAppDispatch();
 
     return (
@@ -13,7 +14,11 @@ const GamePlayerTurn = () => {
                 <GameTimer />
             ) : (
                 <div className='shadow-box rounded-[20px] bg-white px-19 py-4 text-center outline-2 outline-black'>
-                    <p className='text-xs uppercase'>Player {winnerPlayer}</p>
+                    <p className='text-xs uppercase'>
+                        {isCpuMode && winnerPlayer === 2
+                            ? 'cpu'
+                            : `Player ${winnerPlayer.toString()}`}
+                    </p>
                     <p className='text-l uppercase'>wins</p>
                     <Button
                         buttonMode='small'

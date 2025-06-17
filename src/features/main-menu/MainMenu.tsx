@@ -4,11 +4,14 @@ import { useState } from 'react';
 import Button from '../../components/Button';
 import PlayerVsCpuIcon from '../../components/icons/PlayerVsCpuIcon';
 import PlayerVsPlayerIcon from '../../components/icons/PlayerVsPlayerIcon';
+import { useAppDispatch } from '../../store/hooks';
+import { setCpuMode } from '../game/boardSlice';
 import GameModes from './GameModes';
 import GameRules from './GameRules';
 
 const MainMenu = () => {
     const [showGameRules, setShowGameRules] = useState(false);
+    const dispatch = useAppDispatch();
 
     const toggleShowGameRules = () => {
         setShowGameRules((sgr) => !sgr);
@@ -27,14 +30,32 @@ const MainMenu = () => {
                 ) : null}
             </AnimatePresence>
             <GameModes>
-                <Button buttonMode='normal' color='pink' type='button'>
-                    <Link to='/play-cpu'>PLAY VS CPU</Link>
-                    <PlayerVsCpuIcon />
-                </Button>
-                <Button buttonMode='normal' color='yellow' type='button'>
-                    <Link to='/play-player'>PLAY VS PLAYER</Link>
-                    <PlayerVsPlayerIcon />
-                </Button>
+                <Link to='/play-cpu'>
+                    <Button
+                        buttonMode='normal'
+                        color='pink'
+                        type='button'
+                        onClick={() => {
+                            dispatch(setCpuMode(true));
+                        }}
+                    >
+                        <span>PLAY VS CPU</span>
+                        <PlayerVsCpuIcon />
+                    </Button>
+                </Link>
+                <Link to='/play-player'>
+                    <Button
+                        buttonMode='normal'
+                        color='yellow'
+                        type='button'
+                        onClick={() => {
+                            dispatch(setCpuMode(false));
+                        }}
+                    >
+                        <span>PLAY VS PLAYER</span>
+                        <PlayerVsPlayerIcon />
+                    </Button>
+                </Link>
                 <Button
                     buttonMode='normal'
                     color='white'

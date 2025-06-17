@@ -3,10 +3,10 @@ import { useCallback, useState } from 'react';
 import MarkerRedIcon from '../../components/icons/MarkerRedIcon';
 import MarkerYellowIcon from '../../components/icons/MarkerYellowIcon';
 import { useAppSelector } from '../../store/hooks';
-import type { BoardState, Row } from './boardSlice';
+import type { Column, Row } from './boardSlice';
 import GameBoardEmptyGridItem from './GameBoardEmptyGridItem';
 
-const emptyGrid: BoardState['grid'] = [
+const emptyGrid: [Column[], Column[], Column[], Column[], Column[], Column[]] = [
     [0, 1, 2, 3, 4, 5, 6],
     [0, 1, 2, 3, 4, 5, 6],
     [0, 1, 2, 3, 4, 5, 6],
@@ -18,8 +18,10 @@ const emptyGrid: BoardState['grid'] = [
 const GameBoardEmptyGrid = () => {
     const [hoveredColumn, setHoveredColumn] = useState(0);
     const runs = useAppSelector((state) => state.board.runs);
+    const isCpuMode = useAppSelector((state) => state.board.isCpuMode);
     const playerTurn = useAppSelector((state) => state.board.playerTurn);
     const winnerPlayer = useAppSelector((state) => state.board.winnerPlayer);
+    const shouldGridItemBeActive = !isCpuMode || playerTurn === 1;
 
     const onEmptyGridItemHover = useCallback((spot: number) => {
         setHoveredColumn(spot);
@@ -27,7 +29,7 @@ const GameBoardEmptyGrid = () => {
 
     return (
         <>
-            {winnerPlayer === null && (
+            {winnerPlayer === null && shouldGridItemBeActive ? (
                 <motion.div
                     animate={{
                         x: 7 * (hoveredColumn * 6.6 + 1),
@@ -37,7 +39,7 @@ const GameBoardEmptyGrid = () => {
                 >
                     {playerTurn === 1 ? <MarkerRedIcon /> : <MarkerYellowIcon />}
                 </motion.div>
-            )}
+            ) : null}
             {winnerPlayer === null
                 ? emptyGrid.map((row, index) => {
                       // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
