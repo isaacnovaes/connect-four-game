@@ -94,7 +94,7 @@ export const counterSlice = createSlice({
         playCpu: (state) => {
             const cpuColumn = getBestCpuMove(state.grid, 2);
             const cpuRow = getAvailableRow(state.grid, cpuColumn);
-            if (cpuRow) {
+            if (cpuRow !== null) {
                 state.grid[cpuRow][cpuColumn] = state.playerTurn;
                 state.runs.push({
                     column: cpuColumn,
