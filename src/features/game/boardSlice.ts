@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { getAvailableRow, getBestCpuMove } from './cpu-helper';
-import { checkWinner } from './helpers';
+import { checkWinner, isGameTied } from './helpers';
 
 export type GridItem = 0 | 1 | 2;
 export type Player = 1 | 2;
@@ -90,6 +90,10 @@ export const counterSlice = createSlice({
                     break;
                 }
             }
+
+            if (isGameTied(state.grid)) {
+                state.state = 'done';
+            }
         },
         playCpu: (state) => {
             const cpuColumn = getBestCpuMove(state.grid, 2);
@@ -131,6 +135,10 @@ export const counterSlice = createSlice({
                     state.timeLeft = initialState.timeLeft;
                     state.playerTurn = 1;
                 }
+            }
+
+            if (isGameTied(state.grid)) {
+                state.state = 'done';
             }
         },
         restart: (state) => {

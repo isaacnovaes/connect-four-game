@@ -148,3 +148,6 @@ export const checkWinner = ({
 
     return { winner: false };
 };
+
+export const isGameTied = (grid: BoardState['grid']): boolean =>
+    grid.every((row) => row.every((gridItem) => gridItem !== 0));
