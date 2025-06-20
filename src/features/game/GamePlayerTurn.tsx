@@ -38,7 +38,7 @@ const GamePlayerTurn = () => {
                         buttonMode='small'
                         type='button'
                         onClick={() => {
-                            dispatch(restart());
+                            dispatch(restart({ switchInitialPlayerTurn: true }));
                         }}
                     >
                         play again

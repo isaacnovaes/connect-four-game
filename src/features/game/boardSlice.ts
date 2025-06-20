@@ -19,6 +19,7 @@ export interface BoardState {
     ];
     runs: Run[];
     playerTurn: Player;
+    initialPlayerTurn: Player;
     winnerPlayer: null | Player;
     timeLeft: number;
     isCpuMode: boolean;
@@ -36,6 +37,7 @@ const initialState: BoardState = {
     ],
     runs: [],
     playerTurn: 1,
+    initialPlayerTurn: 1,
     winnerPlayer: null,
     timeLeft: 30,
     state: 'idle',
@@ -141,10 +143,18 @@ export const counterSlice = createSlice({
                 state.state = 'done';
             }
         },
-        restart: (state) => {
+        restart: (
+            state,
+            { payload }: PayloadAction<{ switchInitialPlayerTurn: boolean } | undefined>
+        ) => {
             state.grid = initialState.grid;
             state.runs = initialState.runs;
-            state.playerTurn = initialState.playerTurn;
+            state.playerTurn = payload?.switchInitialPlayerTurn
+                ? state.initialPlayerTurn === 1
+                    ? 2
+                    : 1
+                : initialState.playerTurn;
+            state.initialPlayerTurn = state.playerTurn;
             state.winnerPlayer = initialState.winnerPlayer;
             state.timeLeft = initialState.timeLeft;
             state.state = initialState.state;
