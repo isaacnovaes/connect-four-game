@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { decreaseTimer, setPlayerTurn } from './boardSlice';
+import { formatNumberDisplay } from './helpers';
 
 const GameTimer = () => {
     const timeLeft = useAppSelector((s) => s.board.timeLeft);
@@ -93,10 +94,7 @@ const GameTimer = () => {
                     </text>
                     <text fontSize='56' transform='translate(45 41)'>
                         <tspan className='text-l tabular-nums' x='.872' y='77'>
-                            {new Intl.NumberFormat('en-us', {
-                                minimumIntegerDigits: 2,
-                            }).format(timeLeft)}
-                            s
+                            {formatNumberDisplay(timeLeft)}s
                         </tspan>
                     </text>
                 </g>

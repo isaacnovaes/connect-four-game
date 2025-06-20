@@ -151,3 +151,8 @@ export const checkWinner = ({
 
 export const isGameTied = (grid: BoardState['grid']): boolean =>
     grid.every((row) => row.every((gridItem) => gridItem !== 0));
+
+export const formatNumberDisplay = (n: number): string =>
+    new Intl.NumberFormat('en-us', {
+        minimumIntegerDigits: 2,
+    }).format(n);

@@ -3,6 +3,7 @@ import CpuIcon from '../../components/icons/CpuIcon';
 import PlayerOneIcon from '../../components/icons/PlayerOneIcon';
 import PlayerTwoIcon from '../../components/icons/PlayerTwoIcon';
 import { useAppSelector } from '../../store/hooks';
+import { formatNumberDisplay } from './helpers';
 
 const GameResult = () => {
     const runs = useAppSelector((state) => state.board.runs);
@@ -21,7 +22,9 @@ const GameResult = () => {
                 <span className='desktop:text-s text-xs uppercase'>
                     {isCpuMode ? 'You' : 'Player 1'}
                 </span>
-                <span className='desktop:text-l text-[32px]'>{playerOnePoints}</span>
+                <span className='desktop:text-l text-[32px] tabular-nums'>
+                    {formatNumberDisplay(playerOnePoints)}
+                </span>
                 <PlayerOneIcon className='desktop:-top-6 desktop:left-1/2 desktop:-translate-x-1/2 absolute top-[10px] -left-[30px]' />
             </motion.div>
             <motion.div
@@ -33,7 +36,9 @@ const GameResult = () => {
                 <span className='desktop:text-s text-xs uppercase'>
                     {isCpuMode ? 'CPU' : 'Player 1'}
                 </span>
-                <span className='desktop:text-l text-[32px]'>{playerTwoPoints}</span>
+                <span className='desktop:text-l text-[32px] tabular-nums'>
+                    {formatNumberDisplay(playerTwoPoints)}
+                </span>
                 {isCpuMode ? (
                     <CpuIcon className='desktop:-top-6 desktop:left-1/2 desktop:-translate-x-1/2 absolute top-[10px] -right-[30px]' />
                 ) : (
