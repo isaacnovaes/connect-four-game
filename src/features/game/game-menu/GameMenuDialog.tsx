@@ -1,7 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
-import Button from '../../components/Button';
-import { useAppDispatch } from '../../store/hooks';
-import { restart, setGameStatus } from './boardSlice';
+import Button from '../../../components/Button';
+import { useAppDispatch } from '../../../store/hooks';
+import { restart, setGameStatus } from '../boardSlice';
 
 const GameMenuDialog = (props: {
     readonly dialogRef: React.RefObject<HTMLDialogElement | null>;

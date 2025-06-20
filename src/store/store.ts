@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import boardReducer, { playCpu } from '../features/game/boardSlice';
+import resizeReducer from '../features/game/resizeSlice';
 
 export const store = configureStore({
-    reducer: { board: boardReducer },
+    reducer: { board: boardReducer, resize: resizeReducer },
 });
 
 store.subscribe(() => {

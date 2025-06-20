@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
 import { useCallback, useState } from 'react';
-import MarkerRedIcon from '../../components/icons/MarkerRedIcon';
-import MarkerYellowIcon from '../../components/icons/MarkerYellowIcon';
-import { useAppSelector } from '../../store/hooks';
-import type { Column, Row } from './boardSlice';
+import MarkerRedIcon from '../../../components/icons/MarkerRedIcon';
+import MarkerYellowIcon from '../../../components/icons/MarkerYellowIcon';
+import { useAppSelector } from '../../../store/hooks';
+import type { Column, Row } from '../boardSlice';
+import { selectIsTabletBreakPoint } from '../resizeSlice';
 import GameBoardEmptyGridItem from './GameBoardEmptyGridItem';
 
 const emptyGrid: [Column[], Column[], Column[], Column[], Column[], Column[]] = [
@@ -21,6 +22,7 @@ const GameBoardEmptyGrid = () => {
     const isCpuMode = useAppSelector((state) => state.board.isCpuMode);
     const playerTurn = useAppSelector((state) => state.board.playerTurn);
     const winnerPlayer = useAppSelector((state) => state.board.winnerPlayer);
+    const isTabletBreakPoint = useAppSelector(selectIsTabletBreakPoint);
     const shouldGridItemBeActive = !isCpuMode || playerTurn === 1;
 
     const onEmptyGridItemHover = useCallback((spot: number) => {
@@ -29,11 +31,11 @@ const GameBoardEmptyGrid = () => {
 
     return (
         <>
-            {winnerPlayer === null && shouldGridItemBeActive ? (
+            {winnerPlayer === null && shouldGridItemBeActive && isTabletBreakPoint ? (
                 <motion.div
                     animate={{
-                        x: 7 * (hoveredColumn * 6.6 + 1),
-                        y: -35,
+                        x: 88 * hoveredColumn + 32,
+                        y: -36,
                     }}
                     className='absolute z-40'
                 >

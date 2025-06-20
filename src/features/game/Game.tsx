@@ -1,6 +1,6 @@
 import BottomBg from './BottomBg';
-import GameBoard from './GameBoard';
-import GameMenu from './GameMenu';
+import GameBoard from './game-board/GameBoard';
+import GameMenu from './game-menu/GameMenu';
 import GameResult from './GameResult';
 
 const Game = () => {

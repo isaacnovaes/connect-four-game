@@ -7,7 +7,7 @@ const BottomBg = () => {
 
     return (
         <div
-            className={`${bg} absolute bottom-0 h-[236px] w-full rounded-t-[60px] transition-colors`}
+            className={`${bg} tablet:h-[234px] absolute bottom-0 h-[236px] w-full rounded-t-[60px] transition-colors`}
         />
     );
 };

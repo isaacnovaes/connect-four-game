@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'motion/react';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../../store/hooks';
 import GameBoardCounter from './GameBoardCounter';
 
 const GameBoardCounters = () => {

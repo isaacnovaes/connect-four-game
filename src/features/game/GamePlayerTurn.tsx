@@ -9,7 +9,7 @@ const GamePlayerTurn = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <div className='absolute top-73 left-1/2 z-40 -translate-x-1/2'>
+        <div className='tablet:top-140 absolute top-73 left-1/2 z-40 -translate-x-1/2'>
             {winnerPlayer === null ? (
                 <GameTimer />
             ) : (
