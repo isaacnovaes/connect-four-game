@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 import { AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import Button from '../../components/Button';
@@ -12,6 +12,7 @@ import GameRules from './GameRules';
 const MainMenu = () => {
     const [showGameRules, setShowGameRules] = useState(false);
     const dispatch = useAppDispatch();
+    const navigate = getRouteApi('/').useNavigate();
 
     const toggleShowGameRules = () => {
         setShowGameRules((sgr) => !sgr);
@@ -30,32 +31,31 @@ const MainMenu = () => {
                 ) : null}
             </AnimatePresence>
             <GameModes>
-                <Link to='/play-cpu'>
-                    <Button
-                        buttonMode='normal'
-                        color='pink'
-                        type='button'
-                        onClick={() => {
-                            dispatch(setCpuMode(true));
-                        }}
-                    >
-                        <span>PLAY VS CPU</span>
-                        <PlayerVsCpuIcon />
-                    </Button>
-                </Link>
-                <Link to='/play-player'>
-                    <Button
-                        buttonMode='normal'
-                        color='yellow'
-                        type='button'
-                        onClick={() => {
-                            dispatch(setCpuMode(false));
-                        }}
-                    >
-                        <span>PLAY VS PLAYER</span>
-                        <PlayerVsPlayerIcon />
-                    </Button>
-                </Link>
+                <Button
+                    buttonMode='normal'
+                    color='pink'
+                    type='button'
+                    onClick={() => {
+                        dispatch(setCpuMode(true));
+                        void navigate({ to: '/play-cpu' });
+                    }}
+                >
+                    <span>PLAY VS CPU</span>
+                    <PlayerVsCpuIcon />
+                </Button>
+
+                <Button
+                    buttonMode='normal'
+                    color='yellow'
+                    type='button'
+                    onClick={() => {
+                        dispatch(setCpuMode(false));
+                        void navigate({ to: '/play-player' });
+                    }}
+                >
+                    <span>PLAY VS PLAYER</span>
+                    <PlayerVsPlayerIcon />
+                </Button>
                 <Button
                     buttonMode='normal'
                     color='white'
